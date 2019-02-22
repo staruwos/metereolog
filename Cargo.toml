@@ -1,0 +1,11 @@
+[package]
+name = "metereolog"
+version = "0.1.0"
+authors = ["pi"]
+edition = "2018"
+
+[dependencies]
+linux-embedded-hal = "0.2.2"
+bme280 = "0.1.1"
+rusqlite = "0.16.0"
+chrono = "0.4.6"
