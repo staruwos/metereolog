@@ -11,33 +11,6 @@ use bme280::BME280;
 use std::fs::OpenOptions;
 use std::io::prelude::*;
 
-//fn save_info_to_file(info: &String)
-//{
-//    let mut file = OpenOptions::new()
-//        .append(true)
-//        .open("metereo.log")
-//        .unwrap();
-//
-//    if let Err(e) = writeln!(file, "{}", info.to_owned())
-//    {
-//        eprintln!("Couldn't write to file: {}", e);
-//    }
-//}
-
-//fn display_info(infos: &[String])
-//{
-//    let mut text: String = infos[0].to_owned();
-//    text.push_str(", ");
-//    text.push_str(&infos[1]);
-//    text.push_str(", ");
-//    text.push_str(&infos[2]);
-//
-//    //println!("Relative Humidity = {:}%", infos[1]);
-//    //println!("Temperature = {:} deg C", infos[0]);
-//    //println!("Pressure = {} pascals", infos[2]);
-//    println!("{}", text);
-//}
-
 #[derive(Debug)]
 struct Infos {
     id: i32,
@@ -55,7 +28,7 @@ fn insert_in_db(conn: &mut Connection, infos: &String, date: &String) -> Result<
 
 fn main() -> Result<()> 
 {
-    let mut connection = Connection::open("metereolog.db")?;
+    let mut connection = Connection::open("/home/pi/metereolog/metereolog.db")?;
     /*
      * Initialize BME280 and retrieve sensors
      */ 
@@ -110,6 +83,7 @@ fn main() -> Result<()>
 
         thread::sleep(time::Duration::from_secs(300));
     }
+
 //    let mut stmt = connection.prepare("SELECT id, date, info from infos;")?;
 //
 //    let rows = stmt.query_map(NO_PARAMS, |row| {
