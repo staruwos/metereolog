@@ -64,7 +64,7 @@ fn main() -> Result<()>
         
         // Retrieve Date and Time
         let local: DateTime<Local> = Local::now();
-        let TimeInfo: String = local.format("%m-%-d-%Y, %-I:%M").to_string();
+        let TimeInfo: String = local.format("%m-%-d-%Y, %-I:%M%P").to_string();
 
         //println!("Time = {}", TimeInfo);
         //println!("Local = {}", local.format("%b %-d %Y, %-I:%M").to_string());
