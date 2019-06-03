@@ -1,15 +1,22 @@
 import sys
 import matplotlib.pyplot as PlotLib
 import sqlite3
+import extract_info
 
 def search_day(cursor):
     day = raw_input("Date (MM-DD-YYY): ")
     cursor.execute("SELECT * FROM infos WHERE date LIKE ?", ('%'+day+'%',))
 
     rows = cursor.fetchall()
+    
+    temps = []
 
     for row in rows:
-        print row
+        temps.append(extract_info.break_info(row))
+
+    PlotLib.plot(temps)
+    PlotLib.ylabel('Temperature')
+    PlotLib.show()
 
 def hour_range(rows, cursor):
     print("Aopa") 
@@ -20,20 +27,11 @@ def search_month_range(x, y = -1):
     else:
         print (x, y)
 
-#connection = sqlite3.connect("metereolog.db")
-#cursor = connection.cursor()
-
-#search_day(cursor)
-
 def main():
-    args = list(sys.argv)
-    n_args = len(sys.argv)
+    connection = sqlite3.connect("metereolog.db")
+    cursor = connection.cursor()
     
-    if n_args >= 2:
-        if args[1] == "--range":
-            print n_args
-            if n_args >= 4:
-                print (args[2] + ", " + args[3])
+    search_day(cursor)
 
 if __name__ == "__main__":
     main()
