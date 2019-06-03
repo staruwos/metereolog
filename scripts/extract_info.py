@@ -1,5 +1,5 @@
 # Info Row
-# [id, 'MM-DD-YYYY, h:myy' , 'TT.T, HH.HH, PPPPP'] 
+# [id, 'MM-DD-YYYY, h:myy' , 'TT.T, HH.HH, PPPPP']
 
 
 
@@ -12,4 +12,4 @@ def break_info(info_row):
     humidity = float(infos[6:11])
     pressure = int(infos[13:18])
 
-    return temperature 
+    return temperature
