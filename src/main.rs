@@ -18,6 +18,9 @@ struct Infos {
     infos: String,
 }
 
+// Time rate in seconds
+const TIMERATE: i32 = 300;
+
 fn insert_in_db(conn: &mut Connection, infos: &String, date: &String) -> Result<()> 
 {
     let tx = conn.transaction()?;
@@ -81,7 +84,7 @@ fn main() -> Result<()>
         println!("T: {}C, U: {}%, P: {}Pa", infos[0], infos[1], infos[2]);  
         println!("------------------------------------");
 
-        thread::sleep(time::Duration::from_secs(300));
+        thread::sleep(time::Duration::from_secs(TIMERATE as u64));
     }
 
 //    let mut stmt = connection.prepare("SELECT id, date, info from infos;")?;
