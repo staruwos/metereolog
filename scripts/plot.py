@@ -1,25 +1,23 @@
-import matplotlib.pyplot as PlotLib
+import sys
 import sqlite3
+import database
 
-def search_day(cursor):
-    day = raw_input("Date (MM-DD-YYY): ")
-    cursor.execute("SELECT * FROM infos WHERE date LIKE ?", ('%'+day+'%',))
+def main():
+    connection = sqlite3.connect("metereolog.db")
+    cursor = connection.cursor()
 
-    rows = cursor.fetchall()
+    print("""
+---Options---
+1-Plot Day
+2-Plot Month
+3-Plot Year
+4-Plot Days in range
+5-Plot Months in range
+6-Plot Years in range
+            """)
 
-    for row in rows:
-        print row
-
-def search_month_range(x, y = -1):
-    if y == -1:
-        print(x)
-    else:
-        print (x, y)
-
-connection = sqlite3.connect("metereolog.db")
-cursor = connection.cursor()
-
-search_day(cursor)
+if __name__ == "__main__":
+    main()
 
 #cursor.execute("SELECT * FROM infos")
 
